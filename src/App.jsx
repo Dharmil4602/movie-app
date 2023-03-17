@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getApiConfiguration, getGenres } from "./store/HomeSlice";
 
 function App() {
-  // const homeSelector = useSelector((state) => state.home.value)
+  const { url } = useSelector((state) => state.home)
+  console.log(url);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +21,8 @@ function App() {
 
   return (
     <div style={{ color: "white" }} className="App">
-      App
+     App
+     {url?.total_pages}
     </div>
   );
 }
