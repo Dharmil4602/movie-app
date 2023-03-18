@@ -30,7 +30,7 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/:mediaType/:id" element={<Details/>}/>
@@ -38,7 +38,7 @@ function App() {
         <Route exact path="/explore/:mediaType" element={<Explore/>} />
         <Route exact path="*" element={<PageNotFound/>} />
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </Router>
   );
 }
