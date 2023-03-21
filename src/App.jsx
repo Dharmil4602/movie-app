@@ -36,7 +36,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/:mediaType/:id" element={<Details/>}/>
