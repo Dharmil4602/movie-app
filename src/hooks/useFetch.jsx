@@ -21,7 +21,7 @@ const useFetch = (url) => {
             setLoading(false)
             setError("Something went wrong")
         });
-    }, [url]); // Whenever the url changes the useEffect will be called
+    }, [url]); // Whenever the url changes the useEffect will be called, that's why we declared the url in the dependency array.
 
     return { data, error, loading };
 }
