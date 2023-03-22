@@ -17,6 +17,10 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [location]) // Whenever the location changes, scroll to the top of the page
+
   const searchQueryHandler = (e) => {
     if (e.key === "Enter" && query !== "") {
       setQuery(e.target.value);
