@@ -18,41 +18,51 @@ function Carousel(props) {
   const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
 
-  const navigation = (direction) => {};
+  const navigation = (direction) => {
+    const container = carouselContainer.current;
+    const scrollAmount =
+      direction === "left"
+        ? container.scrollLeft - (container.offsetWidth + 20)
+        : container.scrollLeft + (container.offsetWidth + 20);
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  };
   const skeletonItem = () => {
     return (
-        <div className="skeletonItem">
-            <div className="posterBlock skeleton"></div>
-            <div className="textBlock">
-                <div className="title skeleton"></div>
-                <div className="date skeleton"></div>
-            </div>
+      <div className="skeletonItem">
+        <div className="posterBlock skeleton"></div>
+        <div className="textBlock">
+          <div className="title skeleton"></div>
+          <div className="date skeleton"></div>
         </div>
-    )
-  }
+      </div>
+    );
+  };
   return (
     <div className="carousel">
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
-          className="carouselLefttNav arrow"
-          onClick={() => navigation("right")}
+          className="carouselLeftNav arrow"
+          onClick={() => navigation("left")}
         />
         <BsFillArrowRightCircleFill
           className="carouselRighttNav arrow"
-          onClick={() => navigation("left")}
+          onClick={() => navigation("right")}
         />
         {!props.loading ? (
-          <div className="carouselItems">
+          <div className="carouselItems" ref={carouselContainer}>
             {props.data?.map((item) => {
               const poster = item.poster_path
                 ? url.poster + item.poster_path
                 : PosterFallback;
               return (
-                <div key={item.id} className="carouselItem">
+                <div key={item.id} className="carouselItem" onClick={() => navigate(`/${item.media_type}/${item.id}`)}>
                   <div className="posterBlock">
                     <Img src={poster} />
-                    <CircleRating rating={item.vote_average.toFixed(1)}/>
-                    <Genres data={item.genre_ids.slice(0,2)}/>
+                    <CircleRating rating={item.vote_average.toFixed(1)} />
+                    <Genres data={item.genre_ids.slice(0, 2)} />
                   </div>
                   <div className="textBlock">
                     <span className="title">{item.title || item.name}</span>
@@ -65,9 +75,7 @@ function Carousel(props) {
             })}
           </div>
         ) : (
-          <div className="loadingSkeleton">
-            {skeletonItem()}
-          </div>
+          <div className="loadingSkeleton">{skeletonItem()}</div>
         )}
       </ContentWrapper>
     </div>
