@@ -27,6 +27,29 @@ function Header() {
       }, 1000);
     }
   };
+
+  const controlNavbarScroll = () => {
+    if(window.scrollY > 150)
+    {
+      if(window.scrollY > lastScrollY && !mobileMenu)
+      {
+        setShow("hide");
+      }
+      else
+      {
+        setShow("show");
+      }
+    } else {
+      setShow("top");
+    }
+    setLastScrollY(window.scrollY);
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbarScroll)
+    return () => {
+      window.removeEventListener("scroll", controlNavbarScroll)
+    }
+  }, [lastScrollY]);
   const openSearchMenu = () => {
     setMobileMenu(false);
     setShowSearch(true);
