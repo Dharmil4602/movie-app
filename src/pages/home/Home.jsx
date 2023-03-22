@@ -12,7 +12,6 @@ function Home() {
         <Trending/>
         <Popular/>
         <TopRated/>
-        <div style={{height: "1000px"}}></div>
     </div>
   )
 }
