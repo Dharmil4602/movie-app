@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/explore/:mediaType" element={<Explore/>} />
         <Route exact path="*" element={<PageNotFound/>} />
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </Router>
   );
 }
