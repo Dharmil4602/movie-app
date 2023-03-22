@@ -29,26 +29,22 @@ function Header() {
   };
 
   const controlNavbarScroll = () => {
-    if(window.scrollY > 150)
-    {
-      if(window.scrollY > lastScrollY && !mobileMenu)
-      {
+    if (window.scrollY > 150) {
+      if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("hide");
-      }
-      else
-      {
+      } else {
         setShow("show");
       }
     } else {
       setShow("top");
     }
     setLastScrollY(window.scrollY);
-  }
+  };
   useEffect(() => {
-    window.addEventListener("scroll", controlNavbarScroll)
+    window.addEventListener("scroll", controlNavbarScroll);
     return () => {
-      window.removeEventListener("scroll", controlNavbarScroll)
-    }
+      window.removeEventListener("scroll", controlNavbarScroll);
+    };
   }, [lastScrollY]);
   const openSearchMenu = () => {
     setMobileMenu(false);
@@ -65,16 +61,13 @@ function Header() {
   };
 
   const navigationHandler = (type) => {
-    if(type === "movie")
-    {
+    if (type === "movie") {
       navigate("/explore/movie");
-    }
-    else if(type === "tv")
-    {
+    } else if (type === "tv") {
       navigate("/explore/tv");
     }
     setMobileMenu(false);
-  }
+  };
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
       <ContentWrapper>
@@ -111,7 +104,7 @@ function Header() {
                 placeholder="Search for movies or Tv shows"
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyUp={searchQueryHandler}
-                />
+              />
               <VscChromeClose onClick={() => setShowSearch(false)} />
             </div>
           </ContentWrapper>
