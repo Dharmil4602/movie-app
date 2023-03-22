@@ -58,7 +58,7 @@ function Carousel(props) {
                 ? url.poster + item.poster_path
                 : PosterFallback;
               return (
-                <div key={item.id} className="carouselItem" onClick={() => navigate(`/${item.media_type}/${item.id}`)}>
+                <div key={item.id} className="carouselItem" onClick={() => navigate(`/${item.media_type || props.endPoint}/${item.id}`)}>
                   <div className="posterBlock">
                     <Img src={poster} />
                     <CircleRating rating={item.vote_average.toFixed(1)} />
