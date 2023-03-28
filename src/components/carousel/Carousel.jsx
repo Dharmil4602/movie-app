@@ -43,6 +43,7 @@ function Carousel(props) {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {props.title && <div className="carouselTitle">{props.title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
