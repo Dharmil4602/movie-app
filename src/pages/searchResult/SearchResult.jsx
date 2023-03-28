@@ -33,6 +33,7 @@ function SearchResult() {
     });
   };
   useEffect(() => {
+    setPageNum(1); // Reset the page number to 1 when the query changes
     fetchInitialData();
   }, [query]);
 

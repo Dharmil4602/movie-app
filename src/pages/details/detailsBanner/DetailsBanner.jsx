@@ -60,7 +60,7 @@ function DetailsBanner(props) {
                     <div className="subtitle">{data.tagline}</div>
                     <Genres data={_genres} />
                     <div className="row">
-                      <CircleRating rating={data.vote_average.toFixed(1)} />
+                      <CircleRating rating={data?.vote_average?.toFixed(1)} />
                       <div className="playbtn" onClick={() => {
                         setShow(true);
                         setVideoId(props.video.key)
