@@ -10,8 +10,11 @@ import CircleRating from "../../../components/circleRating/CircleRating";
 import Img from "../../../components/lazyLoadingImage/Img";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayButton } from "../PlayButton";
+import VideoPopup from "../../../components/videoPopup/VideoPopup";
 
 function DetailsBanner(props) {
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
@@ -58,7 +61,10 @@ function DetailsBanner(props) {
                     <Genres data={_genres} />
                     <div className="row">
                       <CircleRating rating={data.vote_average.toFixed(1)} />
-                      <div className="playbtn" onClick={() => {}}>
+                      <div className="playbtn" onClick={() => {
+                        setShow(true);
+                        setVideoId(props.video.key)
+                      }}>
                         <PlayButton />
                         <span className="text">Watch Trailer</span>
                       </div>
@@ -136,6 +142,12 @@ function DetailsBanner(props) {
                   </div>
                 </div>
               </ContentWrapper>
+              <VideoPopup
+                show={show}
+                setShow={setShow}
+                videoId={videoId}
+                setVideoId={setVideoId}
+              />
             </>
           )}
         </>
